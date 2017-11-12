@@ -8,6 +8,7 @@
 
 // # frisbee
 
+import URL from 'url';
 import caseless from 'caseless';
 import qs from 'qs';
 import { Buffer } from 'buffer';
@@ -181,7 +182,7 @@ export default class Frisbee {
 
         try {
 
-          const originalRes = await fetch(this.opts.baseURI + path, opts);
+          const originalRes = await fetch(new URL(path, this.opts.baseURI), opts);
           const res = createFrisbeeResponse(originalRes);
           const contentType = res.headers.get('Content-Type');
 
